@@ -1,0 +1,1 @@
+This document contains all the information needed for run the Ansible Playbook and commission several K8s nodes on Proxmox

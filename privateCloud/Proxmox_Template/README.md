@@ -1,0 +1,1 @@
+Here is the information needed to create Proxmox Templates for the PoC
