@@ -1,6 +1,6 @@
 variable "ssh_key" {
     # TODO I know, I know... it's the worst practice ever but I'll encrypt it later. FOR SURE!
-  default = "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBACXq4ooGPBd0uqU5uwsWKMP6NiLk9Y1kDIDVMNjURWGVK6ZHSSJRfzv3F9prl3f4uw0oZeRIjb1xeTVNbS6DNWBmAHyuXJPabpW4u9+H/I7gO3RMzjI00wLjzBZz8o0Wwrt0jJnQB8LezrNltQgdn0TpMrUEEuvq5SJfMfwEeDbi2BAOw== etham@macon"
+  default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINVZtOSIXr08cuq1D8CgfpbmXrZZ4PPwAiA+P86fMiBZ etham@bastion"
 }
 variable "proxmox_host" {
     default = "macon"
