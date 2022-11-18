@@ -127,6 +127,7 @@ resource "proxmox_vm_qemu" "kube-storage" {
   network {
     model = "virtio"
     bridge = "vmbr0"
+  }
   lifecycle {
     ignore_changes = [
       network,
