@@ -2,10 +2,10 @@
 # https://github.com/virtualelephant/vsphere-kubernetes/blob/master/ansible/cilium-install.yml#L57
 # ansible .yml files define what tasks/operations to run
 ---
-- hosts: all # TODO CHECK and run on the "all" hosts category from ansible-hosts.txt
+- hosts: all 
   # become means be superuser
   become: true
-  remote_user: ubuntu # TODO Update this user with the curren deployer user
+  remote_user: etham 
   tasks:
   - name: Install packages that allow apt to be used over HTTPS
     apt:
@@ -72,8 +72,6 @@
       update_cache: yes
     vars:
       packages:
-        # TODO Let's identify the best version for every service and update the numbers.
-        # TODO It would be a good thing to move this part to the vars file.
         - kubelet=1.23.6-00
         - kubeadm=1.23.6-00
         - kubectl=1.23.6-00
@@ -95,7 +93,7 @@
       
   - name: add ubuntu user to docker
     user:
-      name: ubuntu
+      name: etham
       group: docker
   
   - name: reboot to apply swap disable

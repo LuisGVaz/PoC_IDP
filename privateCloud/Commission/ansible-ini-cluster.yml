@@ -1,6 +1,6 @@
 - hosts: kube_server
   become: true
-  remote_user: ubuntu # TODO Update with the current deployer user
+  remote_user: etham 
   
   vars_files:
     - ansible-vars.yml
