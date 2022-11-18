@@ -33,7 +33,7 @@ resource "proxmox_vm_qemu" "k8s-controler" {
   bootdisk = "scsi0"
   disk {
     slot = 0
-    size = "10G" 
+    size = "32G" 
     type = "scsi"
     storage = var.storageloc
     iothread = 1
@@ -74,7 +74,7 @@ resource "proxmox_vm_qemu" "k8s-node" {
   bootdisk = "scsi0"
   disk {
     slot = 0
-    size = "10G"
+    size = "32G"
     type = "scsi"
     storage = var.storageloc
     iothread = 1
@@ -115,7 +115,7 @@ resource "proxmox_vm_qemu" "k8s-DATA" {
   bootdisk = "scsi0"
   disk {
     slot = 0
-    size = "20G"
+    size = "32G"
     type = "scsi"
     storage = var.storageloc
     iothread = 1

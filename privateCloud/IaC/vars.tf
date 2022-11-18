@@ -6,7 +6,7 @@ variable "proxmox_host" {
     default = "macon"
 }
 variable "template_name" {
-    default = "ubuntu-2204-cloudinit-template" 
+    default = "ubuntu-2204-cloudinit-template"
 }
 
 variable "pm_api_url" {
