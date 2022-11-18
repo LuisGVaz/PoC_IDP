@@ -14,5 +14,9 @@ This document contains all the information needed for apply the terraform script
 
 // TODO Add the terraform installation process.
 
+## Create a user and a API secret in PROXMOX is needed #
+
+// TODO How to create user and API token for automation.
+
 ## How to configure main.tf and how to apply
 // TODO Add the server endpoint where the terraform is executed.

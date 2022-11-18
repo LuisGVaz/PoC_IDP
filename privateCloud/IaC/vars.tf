@@ -1,10 +1,27 @@
 variable "ssh_key" {
-    # TODO Update this ssh-key by the current sshkey generated for the new server
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcwZAOfqf6E6p8IkrurF2vR3NccPbMlXFPaFe2+Eh/8QnQCJVTL6PKduXjXynuLziC9cubXIDzQA+4OpFYUV2u0fAkXLOXRIwgEmOrnsGAqJTqIsMC3XwGRhR9M84c4XPAX5sYpOsvZX/qwFE95GAdExCUkS3H39rpmSCnZG9AY4nPsVRlIIDP+/6YSy9KWp2YVYe5bDaMKRtwKSq3EOUhl3Mm8Ykzd35Z0Cysgm2hR2poN+EB7GD67fyi+6ohpdJHVhinHi7cQI4DUp+37nVZG4ofYFL9yRdULlHcFa9MocESvFVlVW0FCvwFKXDty6askpg9yf4FnM0OSbhgqXzD austin@EARTH"
-}
+    # TODO I know, I know... it's the worst practice ever but I'll encrypt it later. FOR SURE!
+  default = "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBACXq4ooGPBd0uqU5uwsWKMP6NiLk9Y1kDIDVMNjURWGVK6ZHSSJRfzv3F9prl3f4uw0oZeRIjb1xeTVNbS6DNWBmAHyuXJPabpW4u9+H/I7gO3RMzjI00wLjzBZz8o0Wwrt0jJnQB8LezrNltQgdn0TpMrUEEuvq5SJfMfwEeDbi2BAOw== etham@macon"
 variable "proxmox_host" {
     default = "macon"
 }
 variable "template_name" {
-    default = "ubuntu-2004-cloudinit-template" # TODO UPDATE this version to the current in use (jammy)
+    default = "ubuntu-2204-cloudinit-template" 
 }
+
+variable "pm_api_url" {
+    default = "https://rhone.sytes.net/api2/json"
+}
+
+variable "token_id" {
+    default = "alohomora@pam"
+}
+
+# TODO I know, I know... it's the worst practice ever but I'll encrypt it later. FOR SURE!
+variable "token_secret" {
+    default = "af52501e-d38d-410a-96cb-21022306fb34"
+}
+
+variable "storageloc" {
+    default = "local-lvm"
+}
+

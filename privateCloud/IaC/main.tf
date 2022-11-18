@@ -1,6 +1,6 @@
 # IaC for creating Nodes for Kubernetes in Proxmox. 
 # 
-# Here should be a first step. Creating a Proxmox Template. Details in Documentation.
+# Here should be a first step. Creating a Proxmox Template. template.sh is in the Proxmox_template folder.
 
 terraform {
   required_providers {
@@ -11,21 +11,17 @@ terraform {
   }
 }
 provider "proxmox" {
-# TODO Document how to create the API access in PROXMOX -->>  https://austinsnerdythings.com/2021/09/01/how-to-deploy-vms-in-proxmox-with-terraform/
-  pm_api_url = "https://prox-1u.home.fluffnet.net:8006/api2/json" # TODO --> Adapt the URI to the final proxmox URI. 
-  # TODO Encrypt the token_id 
-  pm_api_token_id = [secret] # TODO Add the tokenID from PROXMOX
-  pm_api_token_secret = [secret] # TODO Add the scret from PROXOX
+  pm_api_url = var.pm_api_url 
+  pm_api_token_id = var.token_id
+  pm_api_token_secret = var.token_secret
   pm_tls_insecure = true
 }
 resource "proxmox_vm_qemu" "kube-server" {
   count = 1
-  name = "kube-server-0${count.index + 1}"
-  target_node = "prox-1u"
-  # thanks to Brian on YouTube for the vmid tip
-  # http://www.youtube.com/channel/UCTbqi6o_0lwdekcp-D6xmWw
-  vmid = "40${count.index + 1}"
-  clone = "ubuntu-2004-cloudinit-template" # TODO put the current name of our minimal ubuntu image imported to PROXMOX
+  name = "k8s-controler-0${count.index + 1}"
+  target_node = var.proxmox_host
+  vmid = "10${count.index + 1}"
+  clone = var.template_name 
   agent = 1
   os_type = "cloud-init"
   cores = 2
@@ -36,10 +32,9 @@ resource "proxmox_vm_qemu" "kube-server" {
   bootdisk = "scsi0"
   disk {
     slot = 0
-    size = "10G" # TODO Review if this is real space needed
+    size = "10G" 
     type = "scsi"
-    storage = "local-zfs" # TODO change to local-lvm
-    #storage_type = "zfspool"
+    storage = var.storageloc
     iothread = 1
   }
   network {
@@ -49,25 +44,25 @@ resource "proxmox_vm_qemu" "kube-server" {
   
   network {
     model = "virtio"
-    bridge = "vmbr17" # TODO check if this bridge network exists
+    bridge = "vmbr0" 
   }
   lifecycle {
     ignore_changes = [
       network,
     ]
   }
-  ipconfig0 = "ip=10.98.1.4${count.index + 1}/24,gw=10.98.1.1" # TODO change the ip rang to the real one in our private network
-  ipconfig1 = "ip=10.17.0.4${count.index + 1}/24"
+  ipconfig0 = "ip=192.168.1.6${count.index + 1}/24,gw=192.168.1.1" 
+  ipconfig1 = "ip=192.168.1.6${count.index + 1}/24"
   sshkeys = <<EOF
   ${var.ssh_key}
   EOF
 }
 resource "proxmox_vm_qemu" "kube-agent" {
   count = 2
-  name = "kube-agent-0${count.index + 1}"
-  target_node = "prox-1u"
+  name = "k8s-node-0${count.index + 1}"
+  target_node = var.proxmox_host
   vmid = "50${count.index + 1}"
-  clone = "ubuntu-2004-cloudinit-template" # TODO put the current name of our minimal ubuntu image imported to PROXMOX
+  clone = var.template_name
   agent = 1
   os_type = "cloud-init"
   cores = 2
@@ -80,8 +75,7 @@ resource "proxmox_vm_qemu" "kube-agent" {
     slot = 0
     size = "10G"
     type = "scsi"
-    storage = "local-zfs" # TODO change to local-lvm
-    #storage_type = "zfspool"
+    storage = var.storageloc
     iothread = 1
   }
   network {
@@ -91,25 +85,25 @@ resource "proxmox_vm_qemu" "kube-agent" {
   
   network {
     model = "virtio"
-    bridge = "vmbr17" # TODO check if this bridge network exists
+    bridge = "vmbr0" 
   }
   lifecycle {
     ignore_changes = [
       network,
     ]
   }
-  ipconfig0 = "ip=10.98.1.5${count.index + 1}/24,gw=10.98.1.1" # TODO change the ip rang to the real one in our private network
-  ipconfig1 = "ip=10.17.0.5${count.index + 1}/24"
+  ipconfig0 = "ip=192.168.1.7${count.index + 1}/24,gw=192.168.1.1" 
+  ipconfig1 = "ip=192.168.1.7${count.index + 1}/24"
   sshkeys = <<EOF
   ${var.ssh_key}
   EOF
 }
 resource "proxmox_vm_qemu" "kube-storage" {
   count = 1
-  name = "kube-storage-0${count.index + 1}"
-  target_node = "prox-1u"
+  name = "k8s-DATA-0${count.index + 1}"
+  target_node = var.template_name
   vmid = "60${count.index + 1}"
-  clone = "ubuntu-2004-cloudinit-template" # TODO put the current name of our minimal ubuntu image imported to PROXMOX
+  clone = var.template_name
   agent = 1
   os_type = "cloud-init"
   cores = 2
@@ -122,8 +116,7 @@ resource "proxmox_vm_qemu" "kube-storage" {
     slot = 0
     size = "20G"
     type = "scsi"
-    storage = "local-zfs"
-    #storage_type = "zfspool"
+    storage = var.storageloc
     iothread = 1
   }
   network {
@@ -133,15 +126,14 @@ resource "proxmox_vm_qemu" "kube-storage" {
   
   network {
     model = "virtio"
-    bridge = "vmbr17" # TODO check if this bridge network exists
-  }
+    bridge = "vmbr0"
   lifecycle {
     ignore_changes = [
       network,
     ]
   }
-  ipconfig0 = "ip=10.98.1.6${count.index + 1}/24,gw=10.98.1.1" # TODO put the current name of our minimal ubuntu image imported to PROXMOX
-  ipconfig1 = "ip=10.17.0.6${count.index + 1}/24"
+  ipconfig0 = "ip=192.168.1.8${count.index + 1}/24,gw=192.168.1.1" 
+  ipconfig1 = "ip=192.168.1.8${count.index + 1}/24"
   sshkeys = <<EOF
   ${var.ssh_key}
   EOF
