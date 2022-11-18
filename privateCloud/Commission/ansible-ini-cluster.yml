@@ -1,4 +1,4 @@
-- hosts: kube_server
+- hosts: k8s-controler
   become: true
   remote_user: etham 
   
