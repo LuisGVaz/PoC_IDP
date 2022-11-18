@@ -10,8 +10,7 @@ variable "template_name" {
 }
 
 variable "pm_api_url" {
-    # default = "https://rhone.sytes.net/api2/json" # This is for external access.default = 
-    default = "https://macon.rhonle.lan/api2/json"
+    default = "https://rhone.sytes.net/api2/json"
 }
 
 variable "token_id" {
