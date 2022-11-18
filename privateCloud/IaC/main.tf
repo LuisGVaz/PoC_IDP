@@ -63,7 +63,9 @@ resource "proxmox_vm_qemu" "k8s-node" {
   name = "k8s-node-0${count.index + 1}"
   target_node = var.proxmox_host
   vmid = "50${count.index + 1}"
+  
   clone = var.template_name
+  
   agent = 1
   os_type = "cloud-init"
   cores = 2
@@ -99,12 +101,14 @@ resource "proxmox_vm_qemu" "k8s-node" {
   ${var.ssh_key}
   EOF
 }
-resource "proxmox_vm_qemu" "k8s-DATA" {
+resource "proxmox_vm_qemu" "k8s-storage" {
   count = 1
-  name = "k8s-DATA-0${count.index + 1}"
-  target_node = var.template_name
+  name = "k8s-storage-0${count.index + 1}"
+  target_node = var.proxmox_host
   vmid = "60${count.index + 1}"
+
   clone = var.template_name
+  
   agent = 1
   os_type = "cloud-init"
   cores = 2

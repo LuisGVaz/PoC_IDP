@@ -11,6 +11,7 @@ echo "--------------------------------------------------------------------------
 echo "Preparing the Cloud image : Add qemu-guest-agent and resizing to 32G. Please, uptdate this parameter as your convenience"
 echo "-----------------------------------------------------------------------------------"
 sudo virt-customize -a jammy-server-cloudimg-amd64.img --install qemu-guest-agent 
+echo "Take care with the disk resize action now. It'll block the possibility to modify in the Terraform definition for every single type of node"
 sudo qemu-img resize jammy-server-cloudimg-amd64.img 32G
 echo "-----------------------------------------------------------------------------------"
 echo "Creating a New templated based on the imaged created"
