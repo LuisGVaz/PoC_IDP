@@ -10,11 +10,12 @@ variable "template_name" {
 }
 
 variable "pm_api_url" {
-    default = "https://rhone.sytes.net/api2/json"
+    # default = "https://rhone.sytes.net/api2/json" # This is for external access.default = 
+    default = "https://macon.rhonle.lan/api2/json"
 }
 
 variable "token_id" {
-    default = "alohomora@pam"
+    default = "alohomora@pam!idp_token"
 }
 
 # TODO I know, I know... it's the worst practice ever but I'll encrypt it later. FOR SURE!
