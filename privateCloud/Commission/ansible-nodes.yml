@@ -1,4 +1,4 @@
-- hosts: k8s-nodes
+- hosts: k8s-node
   become: true
   remote_user: etham
   
