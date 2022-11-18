@@ -16,7 +16,8 @@ provider "proxmox" {
   pm_api_token_secret = var.token_secret
   pm_tls_insecure = true
 }
-resource "proxmox_vm_qemu" "kube-server" {
+
+resource "proxmox_vm_qemu" "k8s-controler" {
   count = 1
   name = "k8s-controler-0${count.index + 1}"
   target_node = var.proxmox_host
@@ -57,7 +58,7 @@ resource "proxmox_vm_qemu" "kube-server" {
   ${var.ssh_key}
   EOF
 }
-resource "proxmox_vm_qemu" "kube-agent" {
+resource "proxmox_vm_qemu" "k8s-node" {
   count = 2
   name = "k8s-node-0${count.index + 1}"
   target_node = var.proxmox_host
@@ -98,7 +99,7 @@ resource "proxmox_vm_qemu" "kube-agent" {
   ${var.ssh_key}
   EOF
 }
-resource "proxmox_vm_qemu" "kube-storage" {
+resource "proxmox_vm_qemu" "k8s-DATA" {
   count = 1
   name = "k8s-DATA-0${count.index + 1}"
   target_node = var.template_name

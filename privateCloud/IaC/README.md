@@ -9,6 +9,13 @@
 
 This document contains all the information needed for apply the terraform script and create several K8s nodes on Proxmox
 
+This terraform creates all the infrastructure needed for deploy a K8s cluster :
+- 1 k8s-controler
+- 2 k8s-nodes
+- 1 k8s-DATA_storage
+
+This terraforms should be executed from the BASTION Server.
+// TODO Create Terrraform for create the Bastion Server. Now it's full manually created.
 
 ## How to install Terraform
 
