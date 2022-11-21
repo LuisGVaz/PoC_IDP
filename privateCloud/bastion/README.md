@@ -6,6 +6,7 @@
 [COFFEE]: https://img.shields.io/badge/CoffeeScript-2F2625.svg?style=for-the-badge&logo=CoffeeScript&logoColor=white
 
 
+// TODO An automation for this process is mandatory!
 
 Bastion is the central point where all the maginc things happens.
 I called Bastion as a neutral point where all the deployments runs from the beggining.

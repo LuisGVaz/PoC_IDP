@@ -10,7 +10,7 @@ Here is the information needed to create Proxmox Templates for the PoC.
 VM definition for the template:
 
 CPU : 1 CPU with 2 Cores
-MEM : 2048 Mb
+MEM : 2048 Mb // Maybe it's not enough
 HD : 32 G
 OS : ubuntu-cloud image jammy 22.04
 

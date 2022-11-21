@@ -1,3 +1,11 @@
+#!/usr/bin/env bash
+
+# Creating Templates for PROXMOX Server
+#
+# Author : Luis Gomez for Ubitransport
+# November 2022
+
+
 sudo apt update -y
 echo "-----------------------------------------------------------------------------------"
 echo "Let's install the libgests. It allows us to install things inside of a Cloud image. Very useful for avoid manual actions after installation"
@@ -27,5 +35,5 @@ sudo qm template 9000
 rm jammy-server-cloudimg-amd64.img
 echo "-----------------------------------------------------------------------------------"
 echo "WARNING! >> Don't forget to add your user and ssh keys in the Cloud-init"
-echo "It's tiem to clone the template as a new VM"
+echo "It's time to clone the template as a new VM"
 echo "-----------------------------------------------------------------------------------"
