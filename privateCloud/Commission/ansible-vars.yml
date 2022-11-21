@@ -8,4 +8,4 @@ join_command_location: "join_command.out"
 home_dir: "/home/etham" 
 
 # Kubernetes Cluster Version
-k8s_ver: 1.25.4
+k8s_ver: 1.25.4-00
