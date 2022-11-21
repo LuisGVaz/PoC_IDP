@@ -16,13 +16,26 @@ This document contains all the information needed for run the Ansible Playbook a
 ## How to use Ansible
 // TODO how to install __ansible__
 
+## Enable Ansible for comunicate with hosts
+
+```bash 
+$ ansible -i ansible-hosts.txt all -u etham -m ping
+```
+Take care if you don't build the bastion from scratch. It's possible the authorizedkeys has the previous hash and you couldn't get access to the new workers nodes.
+If this case then apply :
+```bash
+ssh-keygen -f "/home/etham/.ssh/known_hosts" -R "192.168.1.61"
+ssh-keygen -f "/home/etham/.ssh/known_hosts" -R "192.168.1.71"
+ssh-keygen -f "/home/etham/.ssh/known_hosts" -R "192.168.1.72"
+```
+
 ## Install dependencies
 
 ```bash 
-$ ansible-playbook -i ansible-hosts.txt kubernetes-dependencies.yml
+$ ansible-playbook -i ansible-hosts.txt ansible-kubernetes-dependencies.yml
 ```
 
 ## Initializing the Cluster
 ```bash 
-ansible-playbook -i ansible-hosts.txt ini-cluster.yml
+ansible-playbook -i ansible-hosts.txt ansible-ini-cluster.yml
 ```
