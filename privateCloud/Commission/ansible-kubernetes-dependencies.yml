@@ -68,9 +68,9 @@
       update_cache: yes
     vars:
       packages:
-        - kubelet= "{{ k8s_ver }}"
-        - kubeadm= "{{ k8s_ver }}"
-        - kubectl= "{{ k8s_ver }}"
+        - kubelet=1.25.4-00
+        - kubeadm=1.25.4-00
+        - kubectl=1.25.4-00
         
   - name: hold kubernetes binary versions (prevent from being updated)
     dpkg_selections:
