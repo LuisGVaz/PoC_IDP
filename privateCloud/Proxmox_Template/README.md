@@ -7,6 +7,8 @@
 
 Here is the information needed to create Proxmox Templates for the PoC.
 
+
+
 VM definition for the template:
 
 CPU : 1 CPU with 2 Cores

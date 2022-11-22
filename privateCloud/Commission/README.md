@@ -42,3 +42,6 @@ ansible-playbook -i ansible-hosts.txt ansible-ini-cluster.yml
 
 Now, the master is up and running. It's time to launch the join command.
 ```bash
+ansible-playbook -i ansible-hosts.txt ansible-join-com.yaml
+```
+
