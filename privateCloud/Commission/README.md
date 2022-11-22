@@ -39,3 +39,6 @@ $ ansible-playbook -i ansible-hosts.txt ansible-kubernetes-dependencies.yml
 ```bash 
 ansible-playbook -i ansible-hosts.txt ansible-ini-cluster.yml
 ```
+
+Now, the master is up and running. It's time to launch the join command.
+```bash
