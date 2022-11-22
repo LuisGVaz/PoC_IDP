@@ -8,3 +8,9 @@
 [KUBERNETES]: https://img.shields.io/badge/Kubernetes-326CE5.svg?style=for-the-badge&logo=Kubernetes&logoColor=white
 [COFFEE]: https://img.shields.io/badge/CoffeeScript-2F2625.svg?style=for-the-badge&logo=CoffeeScript&logoColor=white
 
+
+Here you could find how to deploy the Kubernetes Cluster on the previous terraformized infrastructure in PROXMOX.
+Configuring :
+1. Master 
+2. 2 Worker Nodes.
+3. 1 Storage device (deprecated)

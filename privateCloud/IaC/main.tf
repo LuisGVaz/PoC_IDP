@@ -54,6 +54,8 @@ resource "proxmox_vm_qemu" "k8s-controler" {
   }
   ipconfig0 = "ip=192.168.1.6${count.index + 1}/24,gw=192.168.1.1" 
   ipconfig1 = "ip=192.168.1.6${count.index + 1}/24"
+  searchdomain = "rhone.lan"
+  nameserver = "192.168.1.41"
   sshkeys = <<EOF
   ${var.ssh_key}
   EOF
@@ -97,6 +99,8 @@ resource "proxmox_vm_qemu" "k8s-node" {
   }
   ipconfig0 = "ip=192.168.1.7${count.index + 1}/24,gw=192.168.1.1" 
   ipconfig1 = "ip=192.168.1.7${count.index + 1}/24"
+  searchdomain = "rhone.lan"
+  nameserver = "192.168.1.41"
   sshkeys = <<EOF
   ${var.ssh_key}
   EOF
@@ -140,6 +144,8 @@ resource "proxmox_vm_qemu" "k8s-storage" {
   }
   ipconfig0 = "ip=192.168.1.8${count.index + 1}/24,gw=192.168.1.1" 
   ipconfig1 = "ip=192.168.1.8${count.index + 1}/24"
+  searchdomain = "rhone.lan"
+  nameserver = "192.168.1.41"
   sshkeys = <<EOF
   ${var.ssh_key}
   EOF
