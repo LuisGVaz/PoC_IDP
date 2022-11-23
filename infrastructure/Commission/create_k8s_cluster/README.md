@@ -18,6 +18,7 @@ This document contains all the information needed for run the Ansible Playbook a
 
 ## Enable Ansible for comunicate with hosts
 
+First, check if the VM's are available and the keys are inside
 ```bash 
 $ ansible -i ansible-hosts.txt all -u etham -m ping
 ```
@@ -30,7 +31,6 @@ ssh-keygen -f "/home/etham/.ssh/known_hosts" -R "192.168.1.72"
 ```
 
 ## Install dependencies
-
 ```bash 
 $ ansible-playbook -i ansible-hosts.txt ansible-kubernetes-dependencies.yml
 ```
@@ -40,8 +40,14 @@ $ ansible-playbook -i ansible-hosts.txt ansible-kubernetes-dependencies.yml
 ansible-playbook -i ansible-hosts.txt ansible-ini-cluster.yml
 ```
 
-Now, the master is up and running. It's time to launch the join command.
+## Now, the master is up and running. It's time to launch the join command.
 ```bash
 ansible-playbook -i ansible-hosts.txt ansible-join-com.yaml
 ```
 
+## And finally, we will join the nodes.
+```bash
+ansible-playbook -i ansible-hosts.txt ansible-nodes.yml
+
+// TODO Create a bash file for run all those commands.
+```
