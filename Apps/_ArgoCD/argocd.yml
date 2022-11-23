@@ -1,7 +1,0 @@
----
-
-- hosts: argocd
-  remote_user: etham
-  become: yes
-  roles:
-    - argocd

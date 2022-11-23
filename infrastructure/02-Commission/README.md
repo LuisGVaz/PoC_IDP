@@ -14,3 +14,14 @@ Configuring :
 1. Master 
 2. 2 Worker Nodes.
 3. 1 Storage device (deprecated)
+
+
+For commision the complete infrastructure a Kubernetes Cluster is mandatory.
+Regarding there are not a Managed K8s cluster in Proxmox, Ansible power is needed for this first topic.
+
+--> In GCP a *kind* deployment is better than ansible.
+
+Kubernetes Dashborard is optional.
+Just configured in the previous iterations but never used again.
+
+
